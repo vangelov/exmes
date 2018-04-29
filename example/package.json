@@ -7,7 +7,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "exmes": "^1.0.0",
+    "exmes": "latest",
     "tmp-promise": "^1.0.4"
   },
   "author": "Vladimir Angelov",
