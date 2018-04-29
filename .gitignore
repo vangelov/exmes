@@ -5,3 +5,4 @@ build
 .DS_Store
 example/node_modules
 example/sorted-numbers.txt
+example/package-lock.json
