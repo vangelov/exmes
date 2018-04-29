@@ -8,21 +8,29 @@ const {
 } = require('exmes');
 
 async function run() {
-  const dir = await tmp.dir({ unsafeCleanup: true });
+  /* The way the algorithm works is that the large input file is split 
+     into several groups which are sorted in RAM and saved to disk. Then all
+     these sorted files are merge using a heap into the output file.
+  */
+
+  const dir = await tmp.dir({ unsafeCleanup: true }); // used to store the sorted groups 
   console.log('Using temporary directory:', dir.path);
 
   try {
-    const comparator = (x, y) => Number(x) - Number(y);
-    
-    const inputStream = new FileInputStream('numbers.txt', ' ');
+    const comparator = (x, y) => Number(x) - Number(y); // x and y are always strings
+    const separator = ' '; // the string used to separate each item
+
+    const inputStream = new FileInputStream('numbers.txt', separator); 
+
     const splitter = new Splitter({
-      maxGroupSize: 1000,
-      groupOutputStreamCreator: index => new FileOutputStream(`${dir.path}/group-${index}`, ' '),
+      maxGroupSize: 1000, // maximum number of items in a group
+      groupOutputStreamCreator: index => new FileOutputStream(`${dir.path}/group-${index}`, separator), // how to create a file for each sorted group
       comparator
     });
+
     const sortedGroupsInputStreams = await splitter.splitAndOutputSortedGroups(inputStream);
 
-    const outputStream = new FileOutputStream('sorted-numbers.txt', ' ');
+    const outputStream = new FileOutputStream('sorted-numbers.txt', separator);
     const merger = new Merger(comparator);
     await merger.merge(sortedGroupsInputStreams, outputStream);
   } catch (err) {
