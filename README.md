@@ -40,8 +40,8 @@ In the `example` folder you will an application which sorts a sample file contai
 
 ### Running the example
 
-Run: `cd ./example` && `npm install` && `npm start`
+Run: `cd ./example && npm install && npm start`
 
 ## Test
 
-To run the tests execute: `npm install` && `npm test`.
+To run the tests execute: `npm install && npm test`.
