@@ -8,11 +8,6 @@ const {
 } = require('exmes');
 
 async function run() {
-  /* The way the algorithm works is that the large input file is split 
-     into several groups which are sorted in RAM and saved to disk. Then all
-     these sorted files are merged using a heap into the output file.
-  */
-
   const dir = await tmp.dir({ unsafeCleanup: true }); // used to store the sorted groups 
   console.log('Using temporary directory:', dir.path);
 

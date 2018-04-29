@@ -1,7 +1,7 @@
 {
   "name": "exmes",
   "main": "build/src/index.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A library for sorting large files using external merge sort",
   "engines": {
     "node": ">= 8.9.0"
@@ -35,9 +35,13 @@
     "ts-heap": "^1.1.3",
     "tslib": "~1.9.0"
   },
-  "repository": { 
-    "type" : "git",
-    "url" : "https://github.com/vangelov/exmes"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vangelov/exmes"
   },
-  "keywords": ["sort", "merge sort", "external merge sort"]
+  "keywords": [
+    "sort",
+    "merge sort",
+    "external merge sort"
+  ]
 }
